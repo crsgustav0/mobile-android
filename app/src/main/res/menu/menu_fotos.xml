@@ -5,7 +5,7 @@
     <item
         android:id="@+id/mn_icon_sinc_fotosUgb"
         android:icon="@drawable/ic_launcher_background"
-        android:title="SINCRONIZAR FOTOS"
+        android:title="@string/sincronizar_fotos"
         app:showAsAction="ifRoom" />
 
 

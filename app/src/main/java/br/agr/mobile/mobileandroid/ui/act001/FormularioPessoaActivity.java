@@ -65,11 +65,7 @@ public class FormularioPessoaActivity extends AppCompatActivity {
 
         pessoasDao = new PessoasDao(context);
 
-        id = Integer.parseInt(getIntent().getStringExtra(PessoasDao.ID));
-        if (id > 0) {
-            tipo = "A";
-        }
-
+       // id = Integer.parseInt(getIntent().getStringExtra(PessoasDao.ID));
     }
 
     @SuppressLint("SourceLockedOrientationActivity")

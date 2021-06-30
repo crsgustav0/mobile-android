@@ -26,7 +26,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nome"
+                    android:hint="@string/nome"
                     android:inputType="text"
                     android:maxLength="60"
                     android:textSize="18dp" />
@@ -43,7 +43,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Telefone"
+                    android:hint="@string/telefone"
                     android:inputType="number"
                     android:maxLength="100"
                     android:textSize="18dp" />
@@ -61,7 +61,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"
+                    android:hint="@string/email"
                     android:inputType="text"
                     android:maxLength="150"
                     android:textSize="18dp" />
@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@color/verde_tv"
-        android:text="SALVAR"
+        android:text="@string/salvar"
         android:textAllCaps="false"
         android:textColor="@color/branco_tv"
         android:textStyle="bold" />

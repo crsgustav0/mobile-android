@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">MobileAndroid</string>
+    <string name="pesquisar">Pesquisar</string>
+    <string name="nome">Nome</string>
+    <string name="telefone">Telefone</string>
+    <string name="salvar">SALVAR</string>
+    <string name="email">Email</string>
+    <string name="ra_informatica_software">RA - INFORMATICA SOFTWARE</string>
+    <string name="cozinha_ti">COZINHA TI</string>
+    <string name="pendente_de_envio">PENDENTE DE ENVIO</string>
+    <string name="qr_code">QR CODE</string>
+    <string name="sincronizar_fotos">SINCRONIZAR FOTOS</string>
 </resources>

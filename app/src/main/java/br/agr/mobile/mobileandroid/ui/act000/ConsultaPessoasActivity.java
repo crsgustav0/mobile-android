@@ -91,7 +91,7 @@ public class ConsultaPessoasActivity extends AppCompatActivity {
 
     private void abriFormularioPessoasActivity(Context context) {
         Intent getIntent = new Intent(context, FormularioPessoaActivity.class);
-        getIntent.putExtra(PessoasDao.ID, 0);
+        //getIntent.putExtra(PessoasDao.ID, 0);
 
         startActivity(getIntent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

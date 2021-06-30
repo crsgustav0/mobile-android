@@ -16,9 +16,12 @@
             android:id="@+id/et_consulta_pesquisa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints="TESTETESTETESTE"
             android:drawableRight="@drawable/ic_search"
-            android:hint="Pesquisar"
+            android:hint="@string/pesquisar"
             android:imeOptions="actionDone"
+            android:importantForAutofill="yes"
+            android:inputType="text"
             android:singleLine="true" />
 
         <ListView

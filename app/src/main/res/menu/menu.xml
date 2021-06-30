@@ -5,7 +5,7 @@
     <item
         android:id="@+id/mn_leitor_qr_code"
         android:icon="@drawable/ic_qr_code"
-        android:title="QR CODE"
+        android:title="@string/qr_code"
         app:showAsAction="ifRoom" />
 
 
