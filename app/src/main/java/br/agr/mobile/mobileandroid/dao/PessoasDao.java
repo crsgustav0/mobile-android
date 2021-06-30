@@ -169,11 +169,15 @@ public class PessoasDao extends Dao {
         String filtro = " id = ? ";
         String[] argumentos = {String.valueOf(pessoas.getId())};
 
-        cv.put(PessoasDao.NOME, pessoas.getNome());
-        cv.put(PessoasDao.TELEFONE, pessoas.getTelefone());
-        cv.put(PessoasDao.EMAIL, pessoas.getEmail());
+        try {
+            cv.put(PessoasDao.NOME, pessoas.getNome());
+            cv.put(PessoasDao.TELEFONE, pessoas.getTelefone());
+            cv.put(PessoasDao.EMAIL, pessoas.getEmail());
 
-        db.update(TABELA, cv, filtro, argumentos);
+            db.update(TABELA, cv, filtro, argumentos);
+        } catch (Exception e) {
+            String.valueOf(e);
+        }
 
         fecharBanco();
     }

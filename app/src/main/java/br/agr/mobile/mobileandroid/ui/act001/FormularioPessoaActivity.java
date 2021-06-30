@@ -80,7 +80,7 @@ public class FormularioPessoaActivity extends AppCompatActivity {
         btn_salvar.setOnClickListener(v -> {
             if (validarCampos()) {
                 ToolBox.exibirMessagem(context, Constantes.TITULO_ACTIVITY_FORMULARIO, "Deseja importar dados?", 0, true,
-                        "Sim", (dialog, which) -> gravarPessoas(),
+                        "Sim", (dialog, which) -> gravarPessoas(tipo, id),
                         "Nao", null);
             }
         });
@@ -103,14 +103,11 @@ public class FormularioPessoaActivity extends AppCompatActivity {
     }
 
     private void gravarPessoas(String tipo, int id) {
-        int id = -1;
-
-        Pessoas cAux = null;
         ArrayList<Pessoas> listaPessoas = new ArrayList<>();
 
         if (tipo.equals("I")) {//Incluir
+            Pessoas cAux = null;
 
-            //Inserir
             if (cAux == null) {
 
                 id = pessoasDao.proximoID();
@@ -126,20 +123,21 @@ public class FormularioPessoaActivity extends AppCompatActivity {
                 pessoasDao.inserirPessoa(listaPessoas);
 
             }
+
         } else if (tipo.equals("A")) {//Alterar
+            String nome = txt_nome.getEditText().getText().toString().trim();
+            String telefone = txt_telefone.getEditText().getText().toString().trim();
+            String email = txt_email.getEditText().getText().toString().trim();
 
-                   /* //Alterar
-        if (cAux != null) {
+            Pessoas auxPessoas = pessoasDao.obterPessoaByID(id);
+            if (auxPessoas != null) {
+                auxPessoas.setId(id);
+                auxPessoas.setNome(nome);
+                auxPessoas.setTelefone(telefone);
+                auxPessoas.setEmail(email);
 
-            int id = cAux.getId();
-            String url = txt_url.getEditText().getText().toString().trim();
-
-            cAux.setId(id);
-            cAux.setUrl(url);
-
-            configuracaoDao.alterarConfiguracaoByID(cAux);
-
-        }*/
+                pessoasDao.alterarPessoa(auxPessoas);
+            }
 
         }
 
