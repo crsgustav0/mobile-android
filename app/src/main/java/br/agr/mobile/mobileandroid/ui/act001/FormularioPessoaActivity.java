@@ -65,14 +65,17 @@ public class FormularioPessoaActivity extends AppCompatActivity {
 
         pessoasDao = new PessoasDao(context);
 
-       // id = Integer.parseInt(getIntent().getStringExtra(PessoasDao.ID));
+        tipo = getIntent().getStringExtra(PessoasDao.TIPO);
+        if (tipo.equals("A")) {
+            id = Integer.parseInt(getIntent().getStringExtra(PessoasDao.ID));
+        }
     }
 
     @SuppressLint("SourceLockedOrientationActivity")
     private void inicializarAcoes() {
         ajustarTela();
 
-        carregarCampos(tipo);
+        carregarCampos(tipo, id);
 
         btn_salvar.setOnClickListener(v -> {
             if (validarCampos()) {
@@ -84,7 +87,7 @@ public class FormularioPessoaActivity extends AppCompatActivity {
 
     }
 
-    private void carregarCampos(String tipo) {
+    private void carregarCampos(String tipo, int id) {
         if (tipo.equals("A")) {
             Pessoas auxPessoas = pessoasDao.obterPessoaByID(id);
             if (auxPessoas != null) {
@@ -99,31 +102,33 @@ public class FormularioPessoaActivity extends AppCompatActivity {
         }
     }
 
-    private void gravarPessoas() {
+    private void gravarPessoas(String tipo, int id) {
         int id = -1;
 
         Pessoas cAux = null;
         ArrayList<Pessoas> listaPessoas = new ArrayList<>();
 
+        if (tipo.equals("I")) {//Incluir
 
-        //Inserir
-        if (cAux == null) {
+            //Inserir
+            if (cAux == null) {
 
-            id = pessoasDao.proximoID();
+                id = pessoasDao.proximoID();
 
-            String nome = txt_nome.getEditText().getText().toString().trim();
-            String telefone = txt_telefone.getEditText().getText().toString().trim();
-            String email = txt_email.getEditText().getText().toString().trim();
+                String nome = txt_nome.getEditText().getText().toString().trim();
+                String telefone = txt_telefone.getEditText().getText().toString().trim();
+                String email = txt_email.getEditText().getText().toString().trim();
 
-            Pessoas pessoas = new Pessoas(id, nome, telefone, email);
+                Pessoas pessoas = new Pessoas(id, nome, telefone, email);
 
-            listaPessoas.add(pessoas);
+                listaPessoas.add(pessoas);
 
-            pessoasDao.inserirPessoa(listaPessoas);
+                pessoasDao.inserirPessoa(listaPessoas);
 
-        }
+            }
+        } else if (tipo.equals("A")) {//Alterar
 
-       /* //Alterar
+                   /* //Alterar
         if (cAux != null) {
 
             int id = cAux.getId();
@@ -135,6 +140,9 @@ public class FormularioPessoaActivity extends AppCompatActivity {
             configuracaoDao.alterarConfiguracaoByID(cAux);
 
         }*/
+
+        }
+
 
         ToolBox.exibirMessagem(context, Constantes.TITULO_ACTIVITY_FORMULARIO, "Informações salvas com sucesso!", R.drawable.ic_launcher_background,
                 true, "Ok",

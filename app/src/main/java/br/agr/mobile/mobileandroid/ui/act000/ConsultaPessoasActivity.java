@@ -91,7 +91,7 @@ public class ConsultaPessoasActivity extends AppCompatActivity {
 
     private void abriFormularioPessoasActivity(Context context) {
         Intent getIntent = new Intent(context, FormularioPessoaActivity.class);
-        //getIntent.putExtra(PessoasDao.ID, 0);
+        getIntent.putExtra(PessoasDao.TIPO, "I");
 
         startActivity(getIntent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -100,11 +100,18 @@ public class ConsultaPessoasActivity extends AppCompatActivity {
 
     private void abrirItemPessoaUGB(AdapterView<?> parent, int position) {
         HMAux retorno = (HMAux) parent.getItemAtPosition(position);
-        Intent getIntent = new Intent(context, FormularioPessoaActivity.class);
+        String idConsulta = "";
 
-        getIntent.putExtra(PessoasDao.ID, getIntent().getStringExtra(PessoasDao.ID));
+        if (retorno != null) {
+            idConsulta = String.valueOf(retorno.get(PessoasDao.ID));
 
-        startActivity(getIntent);
+            Intent getIntent = new Intent(context, FormularioPessoaActivity.class);
+
+            getIntent.putExtra(PessoasDao.ID, idConsulta);
+            getIntent.putExtra(PessoasDao.TIPO, "A");
+
+            startActivity(getIntent);
+        }
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         finish();
     }
