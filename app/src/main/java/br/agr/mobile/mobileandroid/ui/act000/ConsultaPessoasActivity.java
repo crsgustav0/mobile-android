@@ -123,10 +123,11 @@ public class ConsultaPessoasActivity extends AppCompatActivity {
 
     private void ajustarTela() {
         getSupportActionBar().setElevation(0);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         getSupportActionBar().setTitle("Consulta Pessoas");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setHomeButtonEnabled(true);
     }
 
 
@@ -135,21 +136,26 @@ public class ConsultaPessoasActivity extends AppCompatActivity {
         ArrayList<HMAux> pessoas = new ArrayList<>();
 
         String texto = et_consulta.getText().toString().toLowerCase();
+        String nome = "";
+        String telefone = "";
+
 
         for (int i = 0; i < retorno.size(); i++) {
             HMAux item = (HMAux) retorno.get(i);
+            if (item != null) {
 
-            String nome = item.get(PessoasDao.NOME).toLowerCase();
-            String telefone = item.get(PessoasDao.TELEFONE);
+                nome = item.get(PessoasDao.NOME).toLowerCase();
+                telefone = item.get(PessoasDao.TELEFONE);
 
-            if ((nome.contains(texto)) || (telefone.contains(texto))) {
-                HMAux pessoa = new HMAux();
+                if ((nome.contains(texto)) || (telefone.contains(texto))) {
+                    HMAux pessoa = new HMAux();
 
-                pessoa.put(PessoasDao.ID, item.get(PessoasDao.ID));
-                pessoa.put(PessoasDao.NOME, item.get(PessoasDao.NOME));
-                pessoa.put(PessoasDao.TELEFONE, item.get(PessoasDao.TELEFONE));
+                    pessoa.put(PessoasDao.ID, item.get(PessoasDao.ID));
+                    pessoa.put(PessoasDao.NOME, item.get(PessoasDao.NOME));
+                    pessoa.put(PessoasDao.TELEFONE, item.get(PessoasDao.TELEFONE));
 
-                pessoas.add(pessoa);
+                    pessoas.add(pessoa);
+                }
             }
         }
 
