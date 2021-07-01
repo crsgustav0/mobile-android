@@ -27,8 +27,6 @@ import br.agr.mobile.mobileandroid.util.ToolBox;
 public class FormularioPessoaActivity extends AppCompatActivity {
     private Context context;
 
-    public static final String DESCRICAO = "descricao";
-
     private int id = -1;
     private String nome = "";
     private String telefone = "";
@@ -43,8 +41,6 @@ public class FormularioPessoaActivity extends AppCompatActivity {
 
     private PessoasDao pessoasDao;
 
-    String[] De = {DESCRICAO};
-    int[] Para = {R.id.tv_celula_01_descricao01};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +48,6 @@ public class FormularioPessoaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_filtro_ugb);
         incializarVaiaveis();
         inicializarAcoes();
-
     }
 
     private void incializarVaiaveis() {
@@ -66,7 +61,7 @@ public class FormularioPessoaActivity extends AppCompatActivity {
         pessoasDao = new PessoasDao(context);
 
         tipo = getIntent().getStringExtra(PessoasDao.TIPO);
-        if (tipo.equals("A")) {
+        if (tipo.equals("A")) {//Alteral
             id = Integer.parseInt(getIntent().getStringExtra(PessoasDao.ID));
         }
     }
@@ -88,7 +83,7 @@ public class FormularioPessoaActivity extends AppCompatActivity {
     }
 
     private void carregarCampos(String tipo, int id) {
-        if (tipo.equals("A")) {
+        if (tipo.equals("A")) {//Alterar
             Pessoas auxPessoas = pessoasDao.obterPessoaByID(id);
             if (auxPessoas != null) {
                 nome = auxPessoas.getNome();
@@ -104,6 +99,10 @@ public class FormularioPessoaActivity extends AppCompatActivity {
 
     private void gravarPessoas(String tipo, int id) {
         ArrayList<Pessoas> listaPessoas = new ArrayList<>();
+        String nome;
+        String telefone;
+        String email;
+
 
         if (tipo.equals("I")) {//Incluir
             Pessoas cAux = null;
@@ -112,9 +111,9 @@ public class FormularioPessoaActivity extends AppCompatActivity {
 
                 id = pessoasDao.proximoID();
 
-                String nome = txt_nome.getEditText().getText().toString().trim();
-                String telefone = txt_telefone.getEditText().getText().toString().trim();
-                String email = txt_email.getEditText().getText().toString().trim();
+                nome = txt_nome.getEditText().getText().toString().trim();
+                telefone = txt_telefone.getEditText().getText().toString().trim();
+                email = txt_email.getEditText().getText().toString().trim();
 
                 Pessoas pessoas = new Pessoas(id, nome, telefone, email);
 
@@ -125,9 +124,9 @@ public class FormularioPessoaActivity extends AppCompatActivity {
             }
 
         } else if (tipo.equals("A")) {//Alterar
-            String nome = txt_nome.getEditText().getText().toString().trim();
-            String telefone = txt_telefone.getEditText().getText().toString().trim();
-            String email = txt_email.getEditText().getText().toString().trim();
+            nome = txt_nome.getEditText().getText().toString().trim();
+            telefone = txt_telefone.getEditText().getText().toString().trim();
+            email = txt_email.getEditText().getText().toString().trim();
 
             Pessoas auxPessoas = pessoasDao.obterPessoaByID(id);
             if (auxPessoas != null) {
@@ -159,7 +158,7 @@ public class FormularioPessoaActivity extends AppCompatActivity {
 
     private void ajustarTela() {
         getSupportActionBar().setElevation(0);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         getSupportActionBar().setTitle(Constantes.TITULO_ACTIVITY_FORMULARIO);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
