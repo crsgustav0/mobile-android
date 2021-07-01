@@ -20,6 +20,8 @@ public class PessoasDao extends Dao {
     public static final String TELEFONE = "telefone";
     public static final String EMAIL = "email";
 
+    public static final String TIPO = "tipo";
+
     public PessoasDao(Context context) {
         super(context);
     }
@@ -120,8 +122,6 @@ public class PessoasDao extends Dao {
         return pessoas;
     }
 
-
-    /*  ToolBox*/
     public Pessoas obterPessoaByID(int id) {
 
         Pessoas cAux = null;
@@ -136,7 +136,7 @@ public class PessoasDao extends Dao {
 
             StringBuilder sb = new StringBuilder();
             sb.append(" select id, nome, telefone, email from " + TABELA);
-            sb.append(" where user = ? ");
+            sb.append(" where id = ? ");
 
             cursor = db.rawQuery(sb.toString(), argumentos);
 
@@ -169,11 +169,15 @@ public class PessoasDao extends Dao {
         String filtro = " id = ? ";
         String[] argumentos = {String.valueOf(pessoas.getId())};
 
-        cv.put(PessoasDao.NOME, pessoas.getNome());
-        cv.put(PessoasDao.TELEFONE, pessoas.getTelefone());
-        cv.put(PessoasDao.EMAIL, pessoas.getEmail());
+        try {
+            cv.put(PessoasDao.NOME, pessoas.getNome());
+            cv.put(PessoasDao.TELEFONE, pessoas.getTelefone());
+            cv.put(PessoasDao.EMAIL, pessoas.getEmail());
 
-        db.update(TABELA, cv, filtro, argumentos);
+            db.update(TABELA, cv, filtro, argumentos);
+        } catch (Exception e) {
+            String.valueOf(e);
+        }
 
         fecharBanco();
     }
